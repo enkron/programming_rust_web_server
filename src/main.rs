@@ -86,3 +86,21 @@ struct GcdParams {
     n: u64,
     m: u64,
 }
+
+fn post_gcd(form: web::Form<GcdParams>) -> HttpResponse {
+    if form.n == 0 || form.m == 0 {
+        return HttpResponse::BadRequest()
+            .content_type("text/html")
+            .body("Computing the GCD with zero is boring.");
+    }
+
+    let response = format!(
+        "The greatest common divisor of the numbers {} and {} \
+                            is <b>{}</b>\n",
+        form.n,
+        form.m,
+        gcd(form.n, form.m)
+    );
+
+    HttpResponse::Ok().content_type("text/html").body(response)
+}

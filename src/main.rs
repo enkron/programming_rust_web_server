@@ -102,6 +102,8 @@ fn post_gcd(form: web::Form<GcdParams>) -> HttpResponse {
             .body("Computing the GCD with zero is boring.");
     }
 
+    // the `format!` macro is just like `println!`, except that instead of writing
+    // the text to the stdout, it returns is is a string.
     let response = format!(
         "The greatest common divisor of the numbers {} and {} \
                             is <b>{}</b>\n",

@@ -85,7 +85,11 @@ fn get_index() -> HttpResponse {
 
 // Structure defined below represents the values expected
 // from a web-form
-#[derive(Deserialize)]
+#[derive(Deserialize)] // the attribute tells the `serde` crate
+                       // to exemine below type when the program is compiled
+                       // and automatically generate code to parse a value
+                       // of this type from data in the format that HTML forms
+                       // use for POST requests.
 struct GcdParams {
     n: u64,
     m: u64,
